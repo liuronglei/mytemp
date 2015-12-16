@@ -1,0 +1,354 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title>落带计算器</title>
+<style type="text/css">
+*{
+	font-size:13px;
+    margin:0;
+    padding:5;
+    }
+input{
+    width:100px;
+    }
+</style>
+</head>
+<body onload="_onLoad();">
+	<div>
+		<form name="form1">
+			<fieldset class="EditField" style="padding-left: 10px; width:470px;">
+				<legend><b><font style="font-family:宋体; font-size:16px">平面落带计算</font></b></legend>
+				
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;宽度
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;落带
+		<br>
+		20 ÷ <input type="text" name="kuandu" id="kuandu" /> × 8 ＝ <input name="luodai" id="luodai" readOnly />
+		<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总数量
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;落带
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;行数
+		<br>
+		<input name="zongshuliang" id="zongshuliang" /> ÷ <input name="luodai" id="luodaiA" readOnly /> ＝ <input name="hangshu" id="hangshu" readOnly />
+		<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;梭数
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;行数
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;台机转数
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;结果
+		<br>
+		<input name="suoshu" id="suoshu" /> × <input name="hangshu" id="hangshuA" readOnly /> ÷ 430 ÷ 60 = <input name="result" id="result" readOnly />
+		<br><br>
+		<!--
+		<input type="button" onclick="getResult();" style="width:140px;" value="复制结果（IE可用）" />
+		-->
+			</fieldset>
+		</form>
+	</div>
+	
+	
+	<div>
+		<form name="form2">
+			<fieldset class="EditField" style="padding-left: 10px; width:470px;">
+				<legend><b><font style="font-family:宋体; font-size:16px">缎面落带计算</font></b></legend>
+				
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;宽度
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;落带
+		<br>
+		10 ÷ <input type="text" name="kuandu2" id="kuandu2" /> × 16 ＝ <input name="luodai2" id="luodai2" readOnly />
+		<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总数量
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;落带
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;行数
+		<br>
+		<input name="zongshuliang2" id="zongshuliang2" /> ÷ <input name="luodai2" id="luodai2A" readOnly /> ＝ <input name="hangshu2" id="hangshu2" readOnly />
+		<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;梭数
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;行数
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;台机转数
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;结果
+		<br>
+		<input name="suoshu2" id="suoshu2" /> × <input name="hangshu2" id="hangshu2A" readOnly /> ÷ 430 ÷ 60 = <input name="result2" id="result2" readOnly />
+		<br><br>
+		<!--
+		<input type="button" onclick="getResult2();" style="width:140px;" value="复制结果（IE可用）" />
+		-->
+			</fieldset>
+		</form>
+	</div>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="button" onclick="clearData();" style="width:140px;" value="清空所有数据" />
+		<br>
+		使用说明：
+		<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		1）单个数据输入完成后，按回车键可输入下一个数据。
+		<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		2）“梭数”输入完成后按回车键，自动选中“结果”框，直接Ctrl+C可进行复制。
+		<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		3）选中“结果”框情况下按回车键可进行下次计算，同时清空所有已输入数据。
+</body>
+<script language="javascript">
+	function _onLoad() {
+		onLoadFunc();
+		onLoadFunc2();
+	}
+	function setClipboard(copyText) {
+		if(window.clipboardData) {
+			window.clipboardData.setData("Text", copyText);
+		}
+	}
+	function clearData() {
+		var kuandu = document.getElementById("kuandu");
+		var zongshuliang = document.getElementById("zongshuliang");
+		var suoshu = document.getElementById("suoshu");
+		var result = document.getElementById("result");
+		var luodai = document.getElementById("luodai");
+		var luodaiA = document.getElementById("luodaiA");
+		var hangshu = document.getElementById("hangshu");
+		var hangshuA = document.getElementById("hangshuA");
+		kuandu.value = "";
+		zongshuliang.value = "";
+		suoshu.value = "";
+		result.value = "";
+		luodai.value = "";
+		luodaiA.value = "";
+		hangshu.value = "";
+		hangshuA.value = "";
+		var kuandu2 = document.getElementById("kuandu2");
+		var zongshuliang2 = document.getElementById("zongshuliang2");
+		var suoshu2 = document.getElementById("suoshu2");
+		var luodai2 = document.getElementById("luodai2");
+		var luodai2A = document.getElementById("luodai2A");
+		var hangshu2 = document.getElementById("hangshu2");
+		var hangshu2A = document.getElementById("hangshu2A");
+		kuandu2.value = "";
+		zongshuliang2.value = "";
+		suoshu2.value = "";
+		result2.value = "";
+		luodai2.value = "";
+		luodai2A.value = "";
+		hangshu2.value = "";
+		hangshu2A.value = "";
+	}
+	
+	/***************平面落带计算****************/
+	function onLoadFunc() {
+		var kuandu = document.getElementById("kuandu");
+		var zongshuliang = document.getElementById("zongshuliang");
+		var suoshu = document.getElementById("suoshu");
+		var result = document.getElementById("result");
+		if("\v"=="v") { 
+			kuandu.onpropertychange = kuanduChange; 
+			zongshuliang.onpropertychange = zongshuliangChange; 
+			suoshu.onpropertychange = suoshuChange; 
+		}else{ 
+			kuandu.addEventListener("input",kuanduChange,false); 
+			zongshuliang.addEventListener("input",zongshuliangChange,false); 
+			suoshu.addEventListener("input",suoshuChange,false); 
+		}
+		kuandu.focus();
+		kuandu.onkeypress = keypressFunc;
+		zongshuliang.onkeypress = keypressFunc; 
+		suoshu.onkeypress = keypressFunc;
+		result.onkeypress = keypressFunc;
+	}
+	function keypressFunc() {
+		var kuandu = document.getElementById("kuandu");
+		var zongshuliang = document.getElementById("zongshuliang");
+		var suoshu = document.getElementById("suoshu");
+		var result = document.getElementById("result");
+		var luodai = document.getElementById("luodai");
+		var luodaiA = document.getElementById("luodaiA");
+		var hangshu = document.getElementById("hangshu");
+		var hangshuA = document.getElementById("hangshuA");
+		if(event.keyCode==13) {
+			var activeId = document.activeElement.id;
+			if(activeId == "kuandu") {
+				zongshuliang.focus();
+			} else if(activeId == "zongshuliang") {
+				suoshu.focus();
+			} else if(activeId == "suoshu") {
+				result.focus();
+				result.select();
+			} else if(activeId == "result") {
+				kuandu.value = "";
+				zongshuliang.value = "";
+				suoshu.value = "";
+				result.value = "";
+				luodai.value = "";
+				luodaiA.value = "";
+				hangshu.value = "";
+				hangshuA.value = "";
+				kuandu.focus();
+			}
+			return false;
+		}
+	}
+	
+	function kuanduChange() {
+		setLuodaiValue();
+		setHangshuValue();
+		setResultValue();
+	}
+	function zongshuliangChange() {
+		setHangshuValue();
+		setResultValue();
+	}
+	function suoshuChange() {
+		setResultValue();
+	}
+	
+	function setLuodaiValue() {
+		var kuandu = document.getElementById("kuandu");
+		var luodai = document.getElementById("luodai");
+		var luodaiA = document.getElementById("luodaiA");
+		if(kuandu.value != null && kuandu.value != "") {
+			luodai.value = parseInt(20/kuandu.value)*8;
+			luodaiA.value = luodai.value;
+		} else {
+			luodai.value = "";
+			luodaiA.value = "";
+		}
+	}
+	function setHangshuValue() {
+		var luodai = document.getElementById("luodai");
+		var zongshuliang = document.getElementById("zongshuliang");
+		var hangshu = document.getElementById("hangshu");
+		var hangshuA = document.getElementById("hangshuA");
+		if(zongshuliang.value != null && zongshuliang.value != "" 
+						&& luodai.value != null && luodai.value != "") {
+			hangshu.value = zongshuliang.value/luodai.value;
+			hangshuA.value = hangshu.value;
+		} else {
+			hangshu.value = "";
+			hangshuA.value = "";
+		}
+	}
+	function setResultValue() {
+		var hangshu = document.getElementById("hangshu");
+		var suoshu = document.getElementById("suoshu");
+		var result = document.getElementById("result");
+		if(hangshu.value != null && hangshu.value != "" 
+						&& suoshu.value != null && suoshu.value != "") {
+			result.value = (hangshu.value*suoshu.value/430/60).toFixed(2);
+		} else {
+			result.value = "";
+		}
+	}
+	function getResult() {
+		var result = document.getElementById("result");
+		setClipboard(result.value);
+	}
+	
+	
+	/***************缎面落带计算****************/
+	function onLoadFunc2() {
+		var kuandu2 = document.getElementById("kuandu2");
+		var zongshuliang2 = document.getElementById("zongshuliang2");
+		var suoshu2 = document.getElementById("suoshu2");
+		if("\v"=="v") { 
+			kuandu2.onpropertychange = kuandu2Change; 
+			zongshuliang2.onpropertychange = zongshuliang2Change; 
+			suoshu2.onpropertychange = suoshu2Change; 
+		}else{ 
+			kuandu2.addEventListener("input",kuandu2Change,false); 
+			zongshuliang2.addEventListener("input",zongshuliang2Change,false); 
+			suoshu2.addEventListener("input",suoshu2Change,false); 
+		}
+		kuandu2.onkeypress = keypressFunc2;
+		zongshuliang2.onkeypress = keypressFunc2; 
+		suoshu2.onkeypress = keypressFunc2;
+		result2.onkeypress = keypressFunc2;
+	}
+	function keypressFunc2() {
+		var kuandu2 = document.getElementById("kuandu2");
+		var zongshuliang2 = document.getElementById("zongshuliang2");
+		var suoshu2 = document.getElementById("suoshu2");
+		var luodai2 = document.getElementById("luodai2");
+		var luodai2A = document.getElementById("luodai2A");
+		var hangshu2 = document.getElementById("hangshu2");
+		var hangshu2A = document.getElementById("hangshu2A");
+		if(event.keyCode==13) {
+			var activeId = document.activeElement.id;
+			if(activeId == "kuandu2") {
+				zongshuliang2.focus();
+			} else if(activeId == "zongshuliang2") {
+				suoshu2.focus();
+			} else if(activeId == "suoshu2") {
+				result2.focus();
+				result2.select();
+			} else if(activeId == "result2") {
+				kuandu2.value = "";
+				zongshuliang2.value = "";
+				suoshu2.value = "";
+				result2.value = "";
+				luodai2.value = "";
+				luodai2A.value = "";
+				hangshu2.value = "";
+				hangshu2A.value = "";
+				kuandu2.focus();
+			}
+			return false;
+		}
+	}
+	
+	function kuandu2Change() {
+		setluodai2Value();
+		sethangshu2Value();
+		setresult2Value();
+	}
+	function zongshuliang2Change() {
+		sethangshu2Value();
+		setresult2Value();
+	}
+	function suoshu2Change() {
+		setresult2Value();
+	}
+	
+	function setluodai2Value() {
+		var kuandu2 = document.getElementById("kuandu2");
+		var luodai2 = document.getElementById("luodai2");
+		var luodai2A = document.getElementById("luodai2A");
+		if(kuandu2.value != null && kuandu2.value != "") {
+			luodai2.value = parseInt(10/kuandu2.value)*16;
+			luodai2A.value = luodai2.value;
+		} else {
+			luodai2.value = "";
+			luodai2A.value = "";
+		}
+	}
+	function sethangshu2Value() {
+		var luodai2 = document.getElementById("luodai2");
+		var zongshuliang2 = document.getElementById("zongshuliang2");
+		var hangshu2 = document.getElementById("hangshu2");
+		var hangshu2A = document.getElementById("hangshu2A");
+		if(zongshuliang2.value != null && zongshuliang2.value != "" 
+						&& luodai2.value != null && luodai2.value != "") {
+			hangshu2.value = zongshuliang2.value/luodai2.value;
+			hangshu2A.value = hangshu2.value;
+		} else {
+			hangshu2.value = "";
+			hangshu2A.value = "";
+		}
+	}
+	function setresult2Value() {
+		var hangshu2 = document.getElementById("hangshu2");
+		var suoshu2 = document.getElementById("suoshu2");
+		var result2 = document.getElementById("result2");
+		if(hangshu2.value != null && hangshu2.value != "" 
+						&& suoshu2.value != null && suoshu2.value != "") {
+			result2.value = (hangshu2.value*suoshu2.value/430/60).toFixed(2);
+		} else {
+			result2.value = "";
+		}
+	}
+	function getResult2() {
+		var result2 = document.getElementById("result2");
+		setClipboard(result2.value);
+	}
+	
+</script>
